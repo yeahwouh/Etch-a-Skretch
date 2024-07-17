@@ -11,17 +11,17 @@ const createGrid = function(val){
 
     div = document.createElement("div")
     cont.appendChild(div)
+    div.style.width = "960px"
+    div.style.height = "960px"
 
     for(let i=0; i<val; i++) {
 
         let columnDiv = document.createElement("div")
         for(let j= 0; j<val; j++) {
             let rowDiv = document.createElement("div")
-            rowDiv.style.width = "50px";
-            rowDiv.style.height = "50px";
+            rowDiv.style.width = `${960/val}px`
+            rowDiv.style.height = `${960/val}px`
             rowDiv.style.backgroundColor = "darkcyan"
-            rowDiv.style.borderStyle = "solid"
-            rowDiv.style.borderColor = "black"
             rowDiv.setAttribute("class", "subdiv")
             columnDiv.appendChild(rowDiv)
         }
