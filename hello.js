@@ -4,37 +4,48 @@ const btn = document.createElement("button")
 btn.textContent = "REFRESH"
 btn.style.display = "block"
 
-cont.appendChild(btn)
-
 btn.style.margin = '0 auto 20px'
 
-const div = document.createElement("div")
+cont.appendChild(btn)
+const createGrid = function(val){
 
-cont.appendChild(div)
+    div = document.createElement("div")
+    cont.appendChild(div)
 
-for(let i=0; i<16; i++) {
-    let columnDiv = document.createElement("div")
-    for(let j=0; j<16; j++) {
-        let rowDiv = document.createElement("div")
-        rowDiv.style.width = "50px";
-        rowDiv.style.height = "50px";
-        rowDiv.style.backgroundColor = "darkcyan"
-        rowDiv.style.borderStyle = "solid"
-        rowDiv.style.borderColor = "black"
-        rowDiv.setAttribute("id", `${j}:${i}`)
-        rowDiv.setAttribute("class", "subdiv")
-        columnDiv.appendChild(rowDiv)
+    for(let i=0; i<val; i++) {
+
+        let columnDiv = document.createElement("div")
+        for(let j= 0; j<val; j++) {
+            let rowDiv = document.createElement("div")
+            rowDiv.style.width = "50px";
+            rowDiv.style.height = "50px";
+            rowDiv.style.backgroundColor = "darkcyan"
+            rowDiv.style.borderStyle = "solid"
+            rowDiv.style.borderColor = "black"
+            rowDiv.setAttribute("class", "subdiv")
+            columnDiv.appendChild(rowDiv)
+        }
+        div.appendChild(columnDiv)
     }
-    div.appendChild(columnDiv)
 
-}
-div.style.display = "flex"
+    div.style.display = "flex"
+    div.style.flexDirection = "row"
 
-div.style.flexDirection = "row"
-document.querySelectorAll('.subdiv').forEach(item => {
-    item.addEventListener('mouseover', event => {
-        item.style.backgroundColor = "#eec0c8"
+    document.querySelectorAll('.subdiv').forEach(item => {
+
+        item.addEventListener('mouseover', event => {
+            item.style.backgroundColor = "#eec0c8"
+        })
     })
+}
+createGrid(16)
 
+btn.addEventListener("click", () =>{
+    let val = prompt("How much boxes per side do you want?")
+    console.log(val)
+    if(val>100){
+        val = 100
+    }
+    div.remove()
+    createGrid(val)
 })
-
